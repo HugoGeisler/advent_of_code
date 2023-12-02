@@ -1,0 +1,14 @@
+{
+    "name": "2023",
+    "version": "1.0.0",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^20.10.2",
+        "nodemon": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.3.2"
+    },
+    "scripts": {
+        "2023.day1": "nodemon --exec ts-node src/2023/day_1"
+    }
+}
