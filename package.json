@@ -9,6 +9,7 @@
         "typescript": "^5.3.2"
     },
     "scripts": {
-        "2023.day1": "nodemon --exec ts-node src/2023/day_1"
+        "dev:2023-day1": "nodemon --exec ts-node src/2023/day_1",
+        "dev:2023-day2": "nodemon --exec ts-node src/2023/day_2"
     }
 }
