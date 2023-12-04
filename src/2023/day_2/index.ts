@@ -31,6 +31,40 @@ const getSumOfGamesIdentities = (inputs: string[], colorRules: ColorRules) => {
 };
 
 /**
+ * Get sum of games identities when all dice respects rules
+ */
+const getSumOfAllMinimumDice = (inputs: string[]) => {
+    return inputs.reduce((inputAccumulator, input) => {
+        const diceRegExp = /(\s(?<COUNT>(\d*))\s(?<COLOR>\w+))/g;
+        const dicePerGame = Array.from(input.matchAll(diceRegExp)).reduce<
+            Partial<{
+                [key in "red" | "green" | "blue"]: number;
+            }>
+        >((diceAccumulator, dice) => {
+            const color = dice.groups.COLOR;
+            const count = Number(dice.groups.COUNT);
+
+            const isSmaller = (diceAccumulator[color] ?? 0) <= count;
+
+            return {
+                ...diceAccumulator,
+                [color]: isSmaller ? count : diceAccumulator[color],
+            };
+        }, {});
+
+        return (
+            inputAccumulator +
+            Object.values(dicePerGame).reduce<number>(
+                (colorAccumulator, color) => {
+                    return colorAccumulator * color;
+                },
+                1
+            )
+        );
+    }, 0);
+};
+
+/**
  * https://adventofcode.com/2023/day/2
  */
 const main = () => {
@@ -41,8 +75,11 @@ const main = () => {
         blue: 14,
     });
 
+    // Get sum of all minimum dice
+    const SumOfAllMinimumDice = getSumOfAllMinimumDice(input);
+
     // Show the results
-    showResultOfDay(1, sumOfGamesIdentities); // 2268, ...
+    showResultOfDay(1, sumOfGamesIdentities, SumOfAllMinimumDice); // 2268, 63542
 };
 
 // Execute main function
