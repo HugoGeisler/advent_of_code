@@ -1,3 +1,4 @@
+import { showResultOfDay } from "../../helpers/show-result";
 import input from "./input.json";
 
 /**
@@ -66,8 +67,6 @@ const getCalibrationValueWithWordererNumber = (input: string[]): number => {
         // Summarize
         return inputAccumulator + calibrationValue;
     }, 0);
-
-    return 0;
 };
 
 /**
@@ -82,11 +81,7 @@ const main = () => {
         getCalibrationValueWithWordererNumber(input);
 
     // Show the results
-    console.log(`Result of day 1 - Star 1 :`, calibrationValues);
-    console.log(
-        `Result of day 1 - Star 2 :`,
-        calibrationValueWithWordererNumber
-    );
+    showResultOfDay(1, calibrationValues, calibrationValueWithWordererNumber); // 54974, 53340
 };
 
 // Execute main function
