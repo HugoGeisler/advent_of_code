@@ -19,6 +19,9 @@ const getCalibrationValue = (input: string[]): number => {
     }, 0);
 };
 
+/**
+ * Get the calibration value with wordered number and summarize it
+ */
 const getCalibrationValueWithWordererNumber = (input: string[]): number => {
     const worderedNumber: string[] = [
         "zero",

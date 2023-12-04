@@ -5,7 +5,10 @@ type ColorRules = Partial<{
     [key in "red" | "green" | "blue"]: number;
 }>;
 
-const getSumOfGameIdentity = (inputs: string[], colorRules: ColorRules) => {
+/**
+ * Get sum of games identities when all dice respects rules
+ */
+const getSumOfGamesIdentities = (inputs: string[], colorRules: ColorRules) => {
     return inputs.reduce((accumulator, input) => {
         const diceRegExp = /(\s(?<COUNT>(\d*))\s(?<COLOR>\w+))/g;
         const colorIsValid = Array.from(input.matchAll(diceRegExp)).every(
@@ -31,15 +34,15 @@ const getSumOfGameIdentity = (inputs: string[], colorRules: ColorRules) => {
  * https://adventofcode.com/2023/day/2
  */
 const main = () => {
-    // Get sum of game identity
-    const sumOfGameIdentity = getSumOfGameIdentity(input, {
+    // Get sum of games identities
+    const sumOfGamesIdentities = getSumOfGamesIdentities(input, {
         red: 12,
         green: 13,
         blue: 14,
     });
 
     // Show the results
-    showResultOfDay(1, sumOfGameIdentity); // 2268, ...
+    showResultOfDay(1, sumOfGamesIdentities); // 2268, ...
 };
 
 // Execute main function
