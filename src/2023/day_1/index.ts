@@ -1,28 +1,34 @@
 import { showResultOfDay } from "../../helpers/show-result";
+import { summarize } from "../../helpers/summarize";
 import input from "./input.json";
 
+// =====================================================
+// Star 1
+// =====================================================
 /**
  * Get the calibration value and summarize it
  */
-const getCalibrationValue = (input: string[]): number => {
-    return input.reduce((inputAccumulator, value) => {
+const getCalibrationValue = (inputs: string[]): number => {
+    return summarize(inputs, (input) => {
         // Get all number contains in the input
-        const inputNumbers = value.split("").filter(Number);
+        const inputNumbers = input.split("").filter(Number);
 
         // Concat first and last value to get the calibration value
         const calibrationValue = Number(
             [inputNumbers.at(0), inputNumbers.at(-1)].join("")
         );
 
-        // Summarize
-        return inputAccumulator + calibrationValue;
-    }, 0);
+        return calibrationValue;
+    });
 };
 
+// =====================================================
+// Star 2
+// =====================================================
 /**
  * Get the calibration value with wordered number and summarize it
  */
-const getCalibrationValueWithWordererNumber = (input: string[]): number => {
+const getCalibrationValueWithWordererNumber = (inputs: string[]): number => {
     const worderedNumber: string[] = [
         "zero",
         "one",
@@ -59,19 +65,20 @@ const getCalibrationValueWithWordererNumber = (input: string[]): number => {
     };
 
     // Get all number contains in the input
-    return input.reduce<number>((inputAccumulator, value) => {
-        const inputNumbers = getDigitsInWord(value);
+    return summarize(inputs, (input) => {
+        const inputNumbers = getDigitsInWord(input);
 
         // Concat first and last value to get the calibration value
         const calibrationValue = Number(
             [inputNumbers.at(0), inputNumbers.at(-1)].join("")
         );
-
-        // Summarize
-        return inputAccumulator + calibrationValue;
-    }, 0);
+        return calibrationValue;
+    });
 };
 
+// =====================================================
+// Main
+// =====================================================
 /**
  * https://adventofcode.com/2023/day/1
  */
